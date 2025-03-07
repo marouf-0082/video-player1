@@ -30,3 +30,11 @@ function seekButton(num) {
     video.currentTime += (num * 5);
   }
 }
+
+function durationOfPlayVideo() {
+video.addEventListener('timeupdate', () => {
+  let percent = video.currentTime/video.duration * 100;
+  document.querySelector('.progress').style.width = percent + '%';
+});
+}
+durationOfPlayVideo();
