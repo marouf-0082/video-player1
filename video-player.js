@@ -20,3 +20,13 @@ function play_video() {
     play_btn.classList.replace('fa-pause', 'fa-play');
   }
 }
+
+function seekButton(num) {
+  if (num === 1) {
+    video.currentTime += (num * 5);
+    video.play();
+    play_btn.classList.replace("fa-play", "fa-pause");
+  } else {
+    video.currentTime += (num * 5);
+  }
+}
