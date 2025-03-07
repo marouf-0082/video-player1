@@ -1,6 +1,6 @@
 const control_container = document.querySelector('.controls-main');
 const video = document.querySelector('video');
-
+const play_btn = document.querySelector('.btn-play i');
 
 
 function show_controls() {
@@ -12,5 +12,11 @@ function hide_controls() {
 }
 
 function play_video() {
-  video.play();
+  if (video.paused) {
+    video.play();
+    play_btn.classList.replace("fa-play", "fa-pause");
+  } else {
+    video.pause();
+    play_btn.classList.replace('fa-pause', 'fa-play');
+  }
 }
