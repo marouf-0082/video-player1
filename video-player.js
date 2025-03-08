@@ -42,19 +42,34 @@ video.addEventListener('timeupdate', () => {
 });
 }
 
-document.onkeydown = (e) => {
+window.document.onkeydown = (e) => {
   switch(e.key) {
     case 'ArrowUp': 
       if (video.volume < 1) {
         video.volume = (video.volume + 0.1).toFixed(1);
+        showControlMain();
         videoSound();
       }
       break;
     case 'ArrowDown': 
       if (video.volume > 0) {
         video.volume = (video.volume - 0.1).toFixed(1);
+        showControlMain();
         videoSound();
       }
+      break;
+    case ' ':
+      if (video.paused) {
+        video.play();
+        play_btn.classList.replace("fa-play", "fa-pause");
+        durationOfPlayVideo();
+        showControlMain();
+      } else if (video.played) {
+          video.pause();
+          play_btn.classList.replace("fa-pause", "fa-play");
+          durationOfPlayVideo();
+          showControlMain();
+        }
       break;
   }
 }
@@ -62,11 +77,29 @@ document.onkeydown = (e) => {
 function videoSound() {
   volume_show.textContent = (video.volume * 100) + '%';
 
-  if (volume_show.textContent >= 50+'%') {
+  if (volume_show.textContent === 100+'%') {
     volume_btn_icon.innerHTML = `<i class="fas fa-volume-up"></i>`;
-  } else if (volume_show.textContent > 0+'%') {
+  } else if (volume_show.textContent >= 70+'%') {
+    volume_btn_icon.innerHTML = `<i class="fas fa-volume-up"></i>`;
+  } else if (volume_show.textContent >= 30+'%') {
     volume_btn_icon.innerHTML = `<i class="fas fa-volume-down"></i>`;
+  } else if (volume_show.textContent > 0+'%') {
+    volume_btn_icon.innerHTML = `<i class="fas fa-volume-off"></i>`;
   } else if (volume_show.textContent === 0+'%') {
     volume_btn_icon.innerHTML = `<i class="fas fa-volume-mute"></i>`;
   }
+}
+
+let hideControlsTimeout;
+
+function showControlMain() {
+  show_controls();
+
+  if (hideControlsTimeout) {
+    clearTimeout(hideControlsTimeout);
+  }
+
+  hideControlsTimeout = setTimeout(() => {
+    hide_controls();
+  }, 2000);
 }
