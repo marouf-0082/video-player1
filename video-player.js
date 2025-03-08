@@ -42,7 +42,7 @@ function seekButton(num) {
 
 function durationOfPlayVideo() {
 video.addEventListener('timeupdate', () => {
-  let percent = video.currentTime/video.duration * 100;
+  let percent = (video.currentTime/video.duration) * 100;
   document.querySelector('.progress').style.width = percent + '%';
 });
 }
@@ -54,6 +54,7 @@ window.document.onkeydown = (e) => {
         video.volume = (video.volume + 0.1).toFixed(1);
         showControlMain();
         videoSound();
+        video.muted = false;
       }
       break;
     case 'ArrowDown': 
@@ -61,6 +62,7 @@ window.document.onkeydown = (e) => {
         video.volume = (video.volume - 0.1).toFixed(1);
         showControlMain();
         videoSound();
+        video.muted = false;
       }
       break;
     case ' ':
@@ -126,5 +128,15 @@ function fullScreen() {
     video.requestFullscreen();
   } else if (document.exitFullscreen) {
     video.exitFullscreen();
+  }
+}
+
+function toggleMute() {
+  if (video.muted) {
+    video.muted = false;
+    videoSound();
+  } else {
+    video.muted = true;
+    volume_btn_icon.innerHTML = `<i class="fas fa-volume-mute"></i>`;
   }
 }
