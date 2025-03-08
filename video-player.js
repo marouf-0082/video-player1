@@ -25,10 +25,15 @@ function play_video() {
 
 function seekButton(num) {
   if (num === 1) {
-    video.currentTime += (num * 5);
-    video.play();
-    play_btn.classList.replace("fa-play", "fa-pause");
-    durationOfPlayVideo();
+    if (video.currentTime === 0) {
+      video.play();
+      play_btn.classList.replace("fa-play", "fa-pause");
+      video.currentTime += (num * 5);
+      durationOfPlayVideo();
+    } else {
+      video.currentTime += (num * 5);
+      durationOfPlayVideo();
+    }
   } else {
     video.currentTime += (num * 5);
     durationOfPlayVideo();
@@ -70,6 +75,14 @@ window.document.onkeydown = (e) => {
           durationOfPlayVideo();
           showControlMain();
         }
+      break;
+    case 'ArrowRight':
+      seekButton(1);
+      showControlMain();
+      break;
+    case 'ArrowLeft':
+      seekButton(-1);
+      showControlMain();
       break;
   }
 }
