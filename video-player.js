@@ -140,3 +140,9 @@ function toggleMute() {
     volume_btn_icon.innerHTML = `<i class="fas fa-volume-mute"></i>`;
   }
 }
+
+function resetVideo() {
+  video.currentTime = 0;
+  video.pause();
+  play_btn.classList.replace("fa-pause", "fa-play");
+}
