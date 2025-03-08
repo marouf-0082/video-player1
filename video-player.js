@@ -84,6 +84,10 @@ window.document.onkeydown = (e) => {
       seekButton(-1);
       showControlMain();
       break;
+    case 'f':
+      case 'F':
+      fullScreen();
+      break;
   }
 }
 
@@ -115,4 +119,12 @@ function showControlMain() {
   hideControlsTimeout = setTimeout(() => {
     hide_controls();
   }, 2000);
+}
+
+function fullScreen() {
+  if (video.requestFullscreen) {
+    video.requestFullscreen();
+  } else if (document.exitFullscreen) {
+    video.exitFullscreen();
+  }
 }
