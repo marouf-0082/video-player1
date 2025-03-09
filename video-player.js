@@ -42,6 +42,9 @@ function seekButton(num) {
 
 function durationOfPlayVideo() {
 video.addEventListener('timeupdate', () => {
+  if (video.currentTime === video.duration) {
+    resetVideo();
+  }
   let percent = (video.currentTime/video.duration) * 100;
   document.querySelector('.progress').style.width = percent + '%';
 });
