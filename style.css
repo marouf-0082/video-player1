@@ -23,6 +23,7 @@ body {
 }
 
 .progress-container {
+  position: relative;
   display: grid;
   grid-template-columns: 20px 1fr 20px;
   z-index: 3;
@@ -68,7 +69,7 @@ body {
   height: 30px;
   background-color: rgba(10, 10, 10, 0.5);
   position: absolute;
-  bottom: 5px;
+  bottom: 8px;
   opacity: 0;
   /* display: none; */
   transition: all 0.5s;

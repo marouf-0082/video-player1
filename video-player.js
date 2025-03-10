@@ -3,6 +3,8 @@ const video = document.querySelector('video');
 const play_btn = document.querySelector('.btn-play i');
 const volume_show = document.querySelector('.volume-show');
 const volume_btn_icon = document.querySelector('.valume-btn');
+const current_time = document.querySelector('.current-time');
+const duration_time = document.querySelector('.duration-time');
 
 function show_controls() {
   control_container.style.opacity = 1;
@@ -40,8 +42,14 @@ function seekButton(num) {
   }
 }
 
+// show the max time of video
+video.addEventListener("loadedmetadata", function () {
+  duration_time.textContent = formatTime(video.duration);
+});
+
 function durationOfPlayVideo() {
 video.addEventListener('timeupdate', () => {
+  current_time.textContent = formatTime(video.currentTime);
   if (video.currentTime === video.duration) {
     resetVideo();
   }
@@ -148,4 +156,10 @@ function resetVideo() {
   video.currentTime = 0;
   video.pause();
   play_btn.classList.replace("fa-pause", "fa-play");
+}
+
+function formatTime(seconds) {
+  const minutes = Math.floor(seconds / 60);
+  const secs = Math.floor(seconds % 60);
+  return `${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`
 }
