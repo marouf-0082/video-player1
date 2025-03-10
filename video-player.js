@@ -1,3 +1,4 @@
+// Select key elements from the DOM
 const control_container = document.querySelector('.controls-main');
 const video = document.querySelector('video');
 const play_btn = document.querySelector('.btn-play i');
@@ -6,6 +7,7 @@ const volume_btn_icon = document.querySelector('.valume-btn');
 const current_time = document.querySelector('.current-time');
 const duration_time = document.querySelector('.duration-time');
 
+// Show and hide controls
 function show_controls() {
   control_container.style.opacity = 1;
 }
@@ -14,6 +16,8 @@ function hide_controls() {
   control_container.style.opacity = 0;
 }
 
+
+// Play/pause video
 function play_video() {
   if (video.paused) {
     video.play();
@@ -25,6 +29,7 @@ function play_video() {
   }
 }
 
+// Seek video forward/backward
 function seekButton(num) {
   if (num === 1) {
     if (video.currentTime === 0) {
@@ -42,11 +47,12 @@ function seekButton(num) {
   }
 }
 
-// show the max time of video
+// Display video duration
 video.addEventListener("loadedmetadata", function () {
   duration_time.textContent = formatTime(video.duration);
 });
 
+// Update progress and time display
 function durationOfPlayVideo() {
 video.addEventListener('timeupdate', () => {
   current_time.textContent = formatTime(video.currentTime);
@@ -58,6 +64,7 @@ video.addEventListener('timeupdate', () => {
 });
 }
 
+// Keyboard controls
 window.document.onkeydown = (e) => {
   switch(e.key) {
     case 'ArrowUp': 
@@ -104,6 +111,7 @@ window.document.onkeydown = (e) => {
   }
 }
 
+// Adjust volume display
 function videoSound() {
   volume_show.textContent = (video.volume * 100) + '%';
 
@@ -120,6 +128,7 @@ function videoSound() {
   }
 }
 
+// Show controls temporarily
 let hideControlsTimeout;
 
 function showControlMain() {
@@ -134,6 +143,7 @@ function showControlMain() {
   }, 2000);
 }
 
+// Toggle fullscreen
 function fullScreen() {
   if (video.requestFullscreen) {
     video.requestFullscreen();
@@ -142,6 +152,7 @@ function fullScreen() {
   }
 }
 
+// Mute/unmute video
 function toggleMute() {
   if (video.muted) {
     video.muted = false;
@@ -152,12 +163,14 @@ function toggleMute() {
   }
 }
 
+// Reset video after completion
 function resetVideo() {
   video.currentTime = 0;
   video.pause();
   play_btn.classList.replace("fa-pause", "fa-play");
 }
 
+// Format time display
 function formatTime(seconds) {
   const minutes = Math.floor(seconds / 60);
   const secs = Math.floor(seconds % 60);
