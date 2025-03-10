@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>توضیح کد جاوااسکریپت ویدیو پلیر</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            direction: rtl;
+            padding: 20px;
+            line-height: 1.8;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 5px;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <h1>توضیح خط به خط کد جاوااسکریپت ویدیو پلیر</h1>
+    
+    <h2>فایل <code>videoControls.js</code></h2>
+    <p>
+        <code>const control_container = document.querySelector('.controls-main');</code><br>
+        این خط عنصر HTML که دارای کلاس <code>.controls-main</code> است را انتخاب می‌کند و در متغیر <code>control_container</code> ذخیره می‌کند.
+    </p>
+    <p>
+        <code>const video = document.querySelector('video');</code><br>
+        این خط تگ <code>video</code> را در صفحه انتخاب می‌کند و در متغیر <code>video</code> ذخیره می‌کند.
+    </p>
+    <p>
+        <code>const play_btn = document.querySelector('.btn-play i');</code><br>
+        این خط آیکون داخل دکمه پخش را که درون کلاس <code>.btn-play</code> قرار دارد انتخاب می‌کند.
+    </p>
+    <p>
+        <code>function play_video() { ... }</code><br>
+        این تابع بررسی می‌کند که آیا ویدیو در حال پخش است یا متوقف شده است. اگر متوقف باشد، ویدیو را پخش می‌کند و آیکون دکمه را تغییر می‌دهد. در غیر این صورت، ویدیو را متوقف می‌کند و آیکون را به حالت <code>fa-play</code> تغییر می‌دهد.
+    </p>
+    <p>
+        <code>video.addEventListener("timeupdate", () => { ... });</code><br>
+        این خط باعث می‌شود که هر زمان که موقعیت زمانی ویدیو تغییر کند، مقدار زمان جاری در نمایشگر به‌روز شود.
+    </p>
+    
+    <h2>فایل <code>keyboardControls.js</code></h2>
+    <p>
+        <code>window.document.onkeydown = (e) => { ... }</code><br>
+        این خط یک شنونده رویداد برای کل صفحه تعریف می‌کند که وقتی کلیدی روی صفحه‌کلید فشرده شد، بررسی کند که چه کلیدی فشرده شده است.
+    </p>
+    <p>
+        <code>case 'ArrowUp': // volume increase</code><br>
+        اگر کلید <code>ArrowUp</code> فشار داده شود، میزان صدای ویدیو افزایش پیدا می‌کند (تا حداکثر مقدار 1).
+    </p>
+    <p>
+        <code>case 'ArrowDown': // sound reduction</code><br>
+        اگر کلید <code>ArrowDown</code> فشار داده شود، میزان صدای ویدیو کاهش پیدا می‌کند (حداقل مقدار 0).
+    </p>
+    <p>
+        <code>case ' ': // play or pause</code><br>
+        اگر کلید اسپیس (فاصله) فشار داده شود، ویدیو پخش یا متوقف می‌شود.
+    </p>
+    <p>
+        <code>case 'ArrowRight': // fast forward video</code><br>
+        اگر کلید <code>ArrowRight</code> فشار داده شود، ویدیو 5 ثانیه به جلو می‌رود.
+    </p>
+    <p>
+        <code>case 'ArrowLeft': // fast backward video</code><br>
+        اگر کلید <code>ArrowLeft</code> فشار داده شود، ویدیو 5 ثانیه به عقب می‌رود.
+    </p>
+    <p>
+        <code>case 'f': case 'F': // fullscreen</code><br>
+        اگر کلید <code>F</code> یا <code>f</code> فشار داده شود، ویدیو به حالت تمام صفحه تغییر پیدا می‌کند.
+    </p>
+    <p>
+        <code>case 'm': case 'M': // mute</code><br>
+        اگر کلید <code>M</code> یا <code>m</code> فشار داده شود، صدای ویدیو قطع یا وصل می‌شود.
+    </p>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>توضیح کد جاوااسکریپت ویدیو پلیر</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            direction: rtl;
+            padding: 20px;
+            line-height: 1.8;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 5px;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <h1>توضیح خط به خط کد جاوااسکریپت ویدیو پلیر</h1>
+    
+    <h2>فایل <code>videoControls.js</code></h2>
+    <p>
+        <code>const control_container = document.querySelector('.controls-main');</code><br>
+        این خط عنصر HTML که دارای کلاس <code>.controls-main</code> است را انتخاب می‌کند و در متغیر <code>control_container</code> ذخیره می‌کند.
+    </p>
+    <p>
+        <code>const video = document.querySelector('video');</code><br>
+        این خط تگ <code>video</code> را در صفحه انتخاب می‌کند و در متغیر <code>video</code> ذخیره می‌کند.
+    </p>
+    <p>
+        <code>const play_btn = document.querySelector('.btn-play i');</code><br>
+        این خط آیکون داخل دکمه پخش را که درون کلاس <code>.btn-play</code> قرار دارد انتخاب می‌کند.
+    </p>
+    <p>
+        <code>const volume_show = document.querySelector('.volume-show');</code><br>
+        مقدار صدای ویدیو را نمایش می‌دهد.
+    </p>
+    <p>
+        <code>function show_controls() { ... }</code><br>
+        این تابع کنترل‌های ویدیو را نمایش می‌دهد.
+    </p>
+    <p>
+        <code>function hide_controls() { ... }</code><br>
+        این تابع کنترل‌های ویدیو را مخفی می‌کند.
+    </p>
+    <p>
+        <code>function play_video() { ... }</code><br>
+        اگر ویدیو متوقف باشد، آن را پخش می‌کند و آیکون دکمه را تغییر می‌دهد. در غیر این صورت، ویدیو را متوقف می‌کند.
+    </p>
+    <p>
+        <code>function seekButton(num) { ... }</code><br>
+        ویدیو را ۵ ثانیه به جلو یا عقب می‌برد.
+    </p>
+    <p>
+        <code>video.addEventListener("loadedmetadata", function () { ... });</code><br>
+        این رویداد مدت زمان کلی ویدیو را پس از بارگذاری نمایش می‌دهد.
+    </p>
+    <p>
+        <code>function videoSound() { ... }</code><br>
+        این تابع میزان صدا را مدیریت کرده و آیکون صدا را به‌روزرسانی می‌کند.
+    </p>
+    <p>
+        <code>function fullScreen() { ... }</code><br>
+        این تابع ویدیو را به حالت تمام صفحه تغییر می‌دهد.
+    </p>
+    <p>
+        <code>function toggleMute() { ... }</code><br>
+        این تابع صدای ویدیو را قطع یا وصل می‌کند.
+    </p>
+    <p>
+        <code>function resetVideo() { ... }</code><br>
+        این تابع پس از پایان ویدیو، آن را به ابتدای زمان بازمی‌گرداند.
+    </p>
+    <p>
+        <code>function formatTime(seconds) { ... }</code><br>
+        این تابع زمان ویدیو را از فرمت ثانیه به دقیقه و ثانیه تبدیل می‌کند.
+    </p>
+</body>
+</html>
