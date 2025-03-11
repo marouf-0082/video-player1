@@ -36,13 +36,13 @@ body {
   cursor: pointer;
 }
 
-.progress {
+/* .progress {
   position: absolute;
   width: 0;
   height: 5px;
   background-color: rgb(44, 137, 224);
   border-radius: 5px;
-}
+} */
 
 .cup-progress {
   position: absolute;
@@ -70,7 +70,7 @@ body {
   height: 30px;
   background-color: rgba(10, 10, 10, 0.5);
   position: absolute;
-  bottom: 8px;
+  bottom: 10px;
   opacity: 0;
   /* display: none; */
   transition: all 0.5s;
@@ -171,4 +171,36 @@ body {
   justify-content: center;
   align-items: center;
   padding: 1px 1px;
+}
+
+.progress {
+  appearance: none;
+  width: 100%;
+  height: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: inset 0.3px 0.3px 2px rgb(115, 115, 115);
+  background-color: rgb(189, 189, 189);
+}
+
+.progress::-webkit-slider-thumb {
+  appearance: none;
+  width: 6px;
+  height: 6px;
+  box-shadow: 0 0 3px 1px rgb(164, 163, 184);
+  background: rgb(0, 132, 255);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.progress::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+input[type="range"]:active,
+input[type="range"]:focus-visible {
+    outline: none;
+    box-shadow: none;
+    border: none;
 }

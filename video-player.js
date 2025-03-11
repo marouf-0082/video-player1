@@ -1,11 +1,12 @@
 // Select key elements from the DOM
-const control_container = document.querySelector('.controls-main');
-const video = document.querySelector('video');
-const play_btn = document.querySelector('.btn-play i');
-const volume_show = document.querySelector('.volume-show');
-const volume_btn_icon = document.querySelector('.valume-btn');
-const current_time = document.querySelector('.current-time');
-const duration_time = document.querySelector('.duration-time');
+const control_container = document.querySelector(".controls-main");
+const video = document.querySelector("video");
+const play_btn = document.querySelector(".btn-play i");
+const volume_show = document.querySelector(".volume-show");
+const volume_btn_icon = document.querySelector(".valume-btn");
+const current_time = document.querySelector(".current-time");
+const duration_time = document.querySelector(".duration-time");
+const progress_bar = document.getElementById("progress");
 
 // Show and hide controls
 function show_controls() {
@@ -16,7 +17,6 @@ function hide_controls() {
   control_container.style.opacity = 0;
 }
 
-
 // Play/pause video
 function play_video() {
   if (video.paused) {
@@ -25,7 +25,7 @@ function play_video() {
     durationOfPlayVideo();
   } else {
     video.pause();
-    play_btn.classList.replace('fa-pause', 'fa-play');
+    play_btn.classList.replace("fa-pause", "fa-play");
   }
 }
 
@@ -35,14 +35,14 @@ function seekButton(num) {
     if (video.currentTime === 0) {
       video.play();
       play_btn.classList.replace("fa-play", "fa-pause");
-      video.currentTime += (num * 5);
+      video.currentTime += num * 5;
       durationOfPlayVideo();
     } else {
-      video.currentTime += (num * 5);
+      video.currentTime += num * 5;
       durationOfPlayVideo();
     }
   } else {
-    video.currentTime += (num * 5);
+    video.currentTime += num * 5;
     durationOfPlayVideo();
   }
 }
@@ -54,76 +54,89 @@ video.addEventListener("loadedmetadata", function () {
 
 // Update progress and time display
 function durationOfPlayVideo() {
-video.addEventListener('timeupdate', () => {
-  current_time.textContent = formatTime(video.currentTime);
-  if (video.currentTime === video.duration) {
-    resetVideo();
-  }
-  let percent = (video.currentTime/video.duration) * 100;
-  document.querySelector('.progress').style.width = percent + '%';
-});
+  video.addEventListener("timeupdate", () => {
+    current_time.textContent = formatTime(video.currentTime);
+    if (video.currentTime === video.duration) {
+      resetVideo();
+    }
+    progress_bar.value = (video.currentTime / video.duration) * 100;
+    updateTime();
+  });
+
 }
+// Update progress bar with draging or 
+function updateTime() {
+  progress_bar.addEventListener("input", () => {
+    seekButton(1);
+    const newTime = (progress_bar.value / 100) * video.duration;
+    video.currentTime = newTime;
+    current_time.textContent = formatTime(video.currentTime);
+  });
+}
+updateTime();
 
 // Keyboard controls
 window.document.onkeydown = (e) => {
-  switch(e.key) {
-    case 'ArrowUp': 
+  switch (e.key) {
+    case "ArrowUp":
       if (video.volume < 1) {
         video.volume = (video.volume + 0.1).toFixed(1);
         showControlMain();
         videoSound();
+        e.preventDefault();
         video.muted = false;
       }
       break;
-    case 'ArrowDown': 
+    case "ArrowDown":
       if (video.volume > 0) {
         video.volume = (video.volume - 0.1).toFixed(1);
         showControlMain();
         videoSound();
+        e.preventDefault();
         video.muted = false;
       }
       break;
-    case ' ':
+    case " ":
       if (video.paused) {
         video.play();
         play_btn.classList.replace("fa-play", "fa-pause");
         durationOfPlayVideo();
         showControlMain();
       } else if (video.played) {
-          video.pause();
-          play_btn.classList.replace("fa-pause", "fa-play");
-          durationOfPlayVideo();
-          showControlMain();
-        }
+        video.pause();
+        play_btn.classList.replace("fa-pause", "fa-play");
+        durationOfPlayVideo();
+        showControlMain();
+      }
       break;
-    case 'ArrowRight':
+    case "ArrowRight":
       seekButton(1);
       showControlMain();
       break;
-    case 'ArrowLeft':
+    case "ArrowLeft":
       seekButton(-1);
       showControlMain();
       break;
-    case 'f':
-      case 'F':
+    case "f":
+    case "F":
       fullScreen();
       break;
   }
-}
+};
 
 // Adjust volume display
 function videoSound() {
-  volume_show.textContent = (video.volume * 100) + '%';
+  volume_show.textContent = video.volume * 100 + "%";
 
-  if (volume_show.textContent === 100+'%') {
+  if (volume_show.textContent === 100 + "%") {
     volume_btn_icon.innerHTML = `<i class="fas fa-volume-up"></i>`;
-  } else if (volume_show.textContent >= 70+'%') {
+  } else if (volume_show.textContent >= 70 + "%") {
     volume_btn_icon.innerHTML = `<i class="fas fa-volume-up"></i>`;
-  } else if (volume_show.textContent >= 30+'%') {
+  } else if (volume_show.textContent >= 30 + "%") {
     volume_btn_icon.innerHTML = `<i class="fas fa-volume-down"></i>`;
-  } else if (volume_show.textContent > 0+'%') {
+  } else if (volume_show.textContent > 0 + "%") {
     volume_btn_icon.innerHTML = `<i class="fas fa-volume-off"></i>`;
-  } else if (volume_show.textContent === 0+'%') {
+  } else if (volume_show.textContent === 0 + "%") {
     volume_btn_icon.innerHTML = `<i class="fas fa-volume-mute"></i>`;
   }
 }
@@ -166,6 +179,7 @@ function toggleMute() {
 // Reset video after completion
 function resetVideo() {
   video.currentTime = 0;
+  progress_bar.value = 0;
   video.pause();
   play_btn.classList.replace("fa-pause", "fa-play");
 }
@@ -174,5 +188,5 @@ function resetVideo() {
 function formatTime(seconds) {
   const minutes = Math.floor(seconds / 60);
   const secs = Math.floor(seconds % 60);
-  return `${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`
+  return `${String(minutes).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
 }
