@@ -1,4 +1,5 @@
 [demo ⬅](https://marouf-0082.github.io/video-player1/)
 
 ## preview
-![image](https://github.com/user-attachments/assets/f4421ad3-983a-4ab1-b005-07b1a4ce45eb)
+![image](https://github.com/user-attachments/assets/f7a019a7-fd15-476d-95f3-5552aae0d341)
+
