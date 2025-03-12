@@ -190,3 +190,13 @@ function formatTime(seconds) {
   const secs = Math.floor(seconds % 60);
   return `${String(minutes).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
 }
+
+document.getElementById('videoInput').addEventListener('change', (event) => {
+  const file = event.target.files[0];
+  if (file) {
+    const videoURL = URL.createObjectURL(file);
+    video.src = videoURL;
+    play_video();
+    document.querySelector('.choose-video-div').style.display = 'none';
+  }
+})

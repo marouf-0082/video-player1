@@ -13,7 +13,13 @@
 <body>
   <div class="container" onmouseenter="show_controls()" onmouseleave="hide_controls()">
     <div class="video-container">
-      <video src="./video/Ehsan Vaziri - Bedoone To _ احسان وزیری - بدون تو.mp4" onclick="play_video()"></video>
+      <video src="" onclick="play_video()"></video>
+      <div class="choose-video-div">
+        <div class="file-container">
+          <button id="customButton">Choose video</button>
+          <input type="file" id="videoInput" accept="video/*">
+        </div>
+      </div>
     </div>
     <div class="duration-container">
       <div class="current-time">
